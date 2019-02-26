@@ -1,0 +1,197 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#define MAX 100
+using namespace std;
+
+void cargar (int a[], int tam);
+void mostrar (int a[], int tam);
+void Burbuja (int a[],int tam);
+int BusquedaLineal(int a[],int b,int tam);
+int Busquedabinaria(int a[],int b,int tam);
+void mezclar (int a[],int b[],int n, int m, int c[]);
+void concatenar (int a[],int b[],int n, int m, int c[]);
+void emparejar (int a[],int b[],int n);
+void eliminar (int a[],int &tam);
+
+void main ()
+{
+  int vec[MAX],prom,k; //Declarando al vector vec que tiene un tamaña MAX
+   int tam,n,pos,opcion;
+     do
+      {
+        cout<<"Ingrese el numero de elementos del vector: ";
+        cin>>n;
+        }while ((0>=n)||(n>MAX));
+        cargar (vec,n); // Llamada a la función el vector solo se coloca el nombre
+ do
+ {
+    cout<<"\t\t Menu \n";
+    cout<<"\t\t ==== \n";
+    cout<<"1. Mostrar\n";
+    cout<<"2. Ordenar\n";
+    cout<<"3. Busqueda lineal \n";
+    cout<<"4. Eliminar \n";
+    cout<<"5. Mezclar\n";
+    cout<<"6. Emparejar \n";
+    cout<<"7. Concatenar \n";
+    cout<<"8. Busqueda binaria \n";
+    cout<<"0. Salir\n";
+    cout<<"Opcion: ";
+    cin>>opcion;
+    
+switch (opcion)
+{
+   case 1: mostrar(vec,n);
+   break;
+   case 2: Burbuja(vec,n);
+   mostrar(vec,n);
+   break;
+   case 3: pos=BusquedaLineal(vec,k,n);
+if (pos==-1)
+{   cout << "No existe el elemento";
+}
+else
+  { cout << "El dato se encuentra en la posicion: "<<pos;
+  }
+break;
+   case 4: cout<<"Eliminar"<<endl;
+           eliminar (vec,tam);
+           mostrar (vec,n); // Llamada a mostrar
+           break;
+   case 5: cout<<"Mezclar\n";
+           mostrar (vec,n); // Llamada a mostrar
+           break;
+   case 6: cout<<"Emparejar \n";
+           mostrar (vec,n); // Llamada a mostrar
+           break;
+   case 7: cout <<"Concatenar \n";
+           mostrar (vec,n); // Llamada a mostrar
+           break;
+   case 8: cout<<"Busqueda binaria \n";
+           cout<<endl<<"Ingrese el elemento a buscar: ";
+           cin>>k;
+           pos=Busquedabinaria(vec,k,n); // Llamada a la busqueda lineal
+           if (pos==-1)
+            {cout<<"No se encuentra el dato";
+            }
+          else
+             {cout<<"El elemento esta en la posicion "<<pos;
+             }
+           break;
+   case 0: cout<<"Saliendo del Menu";
+           break;
+           default: cout <<"ERROR de opcion";
+           break;
+        }
+        getch();
+        system("cls");
+        }while (opcion!=0);
+   getch();
+}
+
+void cargar (int a[], int tam)
+
+{ for(int i=0;i<tam;i++)
+   {
+      cout<<"a["<<i<<"]= ";
+      cin>> a[i];
+   }
+
+}
+
+void mostrar (int a[], int tam)
+
+{
+    cout << endl<<"Vector clasificado ascendentemente"<<endl;
+      for(int i=0;i<tam;i++)
+        {cout<<"a["<<i<<"]= "<<a[i]<<endl;
+        }
+
+}
+
+void Burbuja (int a[], int tam)
+
+{ int aux=0;
+    for(int i=0;i<tam-1;i++)
+      {  for(int j=i+1;j<tam;j++)
+          { if(a[j]<a[i]) 
+             { aux=a[j];
+             a[j]=a[i];
+             a[i]=aux;
+             }
+          }
+      }
+}
+
+int BusquedaLineal (int a[],int b, int tam)
+
+{ int x;
+    cout<<"ingrese el numero que quiere hallar";
+    cin>>x;
+    for(int i=0;i<tam;i++)
+      {if(x==a[i])
+        {return i;
+        }
+      }
+}
+             
+int Busquedabinaria(int a[],int b,int tam)
+{return 0;
+}
+void mezclar (int a[],int b[],int n, int m, int c[])
+{ int *C, contC,i=0,aux;
+   contC=m+n;
+   C=new int [contC];
+   while(i<contC)
+{if(i<n)
+  { C[i]=a[i];
+  }
+  else
+      { C[i]=b[i-n];
+      }
+      i++;
+    }
+   i=0;
+Burbuja ( C, contC);
+cout<<"El vector mezcla es:"<<endl;
+for(int k=0;k<contC;k++)
+ {cout<<"V["<<k<<"]:"<<C[k]<<endl;
+ }
+}
+
+void concatenar (int A[], int B[], int N, int M, int V[])
+{ int T, j=0;
+   T=N+M;
+   for (int i=0; i<N; i++)
+     { V[i] = A[i];
+     }
+   for (int i=N; i<T; i++)
+   { V[i] = B[j];
+   j++;
+   }
+   for (int i=0; i<T; i++)
+     { cout<<V[i]<<i<<endl;
+     }
+
+}
+
+　
+
+void emparejar (int a[],int b[],int n)
+{}
+void eliminar (int a[],int &tam)
+{ for(int i=0; i<tam; i++)
+   { for(int j=0; j<tam; j++)
+      if(a[i]==a[j])
+        {for(int c=j; c<tam; c++)
+        {a[c]=a[c+1];
+        a[tam]=0;
+        }
+        j=j-1;
+        a[tam]=0;
+        tam=tam-1;
+        }
+    }
+}
+
